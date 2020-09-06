@@ -55,4 +55,10 @@ class UserService(val userRepository: UserRepository) {
 
         return userRepository.save(user)
     }
+
+    fun delete(email: String) {
+        val user = this.findByEmail(email)
+
+        userRepository.delete(user)
+    }
 }
