@@ -26,4 +26,10 @@ class UserController(val userService: UserService) {
         val updatedUser = userService.update(email, updateUserRequestDto)
         return ResponseEntity.ok().body(updatedUser)
     }
+
+    @DeleteMapping("/{email}")
+    fun delete(@PathVariable email: String): ResponseEntity<Any> {
+        val updatedUser = userService.delete(email)
+        return ResponseEntity.ok().body(updatedUser)
+    }
 }
