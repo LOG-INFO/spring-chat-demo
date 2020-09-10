@@ -15,6 +15,7 @@
 2. Docker for Windows 설치 및 설정
 3. MySQL 컨테이너 실행 및 접속
   - `docker pull mysql/mysql-server:latest`
+  - `docker run -p 3306:3307 --name=mysql_test -e MYSQL_ROOT_PASSWORD=test -d mysql/mysql-server:latest`
   - `docker run -p 3306:3306 --name=mysql -e MYSQL_ROOT_PASSWORD=test -d mysql/mysql-server:latest`
   - `apt-get install mysql-client`
   - `mysql -uroot -p`
