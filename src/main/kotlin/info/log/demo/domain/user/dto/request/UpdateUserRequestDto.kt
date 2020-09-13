@@ -1,4 +1,4 @@
-package info.log.demo.domain.user.dto
+package info.log.demo.domain.user.dto.request
 
 import org.springframework.web.multipart.MultipartFile
 

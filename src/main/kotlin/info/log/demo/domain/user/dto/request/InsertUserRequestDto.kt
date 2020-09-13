@@ -1,4 +1,4 @@
-package info.log.demo.domain.user.dto
+package info.log.demo.domain.user.dto.request
 
 import info.log.demo.common.ImageUploadUtil
 import info.log.demo.domain.user.entity.User
