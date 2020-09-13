@@ -41,7 +41,7 @@ class RoomService(
         return roomOptional.get()
     }
 
-    fun findUsersByRoomId(roomId: Long): List<User> {
+    fun findUsersByRoomId(roomId: Long): Set<User> {
         val room = findById(roomId)
         return room.users
     }

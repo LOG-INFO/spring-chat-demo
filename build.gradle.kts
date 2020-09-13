@@ -4,7 +4,11 @@ plugins {
 	id("org.springframework.boot") version "2.3.3.RELEASE"
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
 	kotlin("jvm") version "1.3.72"
+// allopen 확장, @Component 등 특정 스프링 어노테이션에 대해 allopen 플러그인을 적용.
+// https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
 	kotlin("plugin.spring") version "1.3.72"
+// noarg 확장, @Entity, @Embeddable, @MappedSuperclass 어노테이션에 대해 noarg 플러그인 적용.
+// https://kotlinlang.org/docs/reference/compiler-plugins.html#jpa-support
 	kotlin("plugin.jpa") version "1.3.72"
 }
 

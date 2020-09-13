@@ -2,8 +2,7 @@ package info.log.demo.domain.room
 
 import info.log.demo.domain.room.dto.request.*
 import info.log.demo.domain.room.dto.response.SimpleRoomResponseDto
-import info.log.demo.domain.room.entity.Room
-import info.log.demo.domain.user.entity.User
+import info.log.demo.domain.user.dto.response.SimpleUserResponseDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.stream.Collectors.toList
@@ -22,7 +21,7 @@ class RoomController(val roomService: RoomService) {
         return newRoom.toSimpleRoomResponseDto()
     }
 
-    @PatchMapping(value=["/{roomId}"], consumes = ["multipart/form-data"])
+    @PatchMapping(value = ["/{roomId}"], consumes = ["multipart/form-data"])
     fun update(@PathVariable roomId: Long, @RequestBody updateRoomRequestDto: UpdateRoomRequestDto): SimpleRoomResponseDto {
         val updatedRoom = roomService.update(roomId, updateRoomRequestDto)
         return updatedRoom.toSimpleRoomResponseDto()
@@ -35,8 +34,8 @@ class RoomController(val roomService: RoomService) {
     }
 
     @GetMapping("/{roomId}/users")
-    fun enterRoom(@PathVariable roomId: Long): List<User> {
-        return roomService.findUsersByRoomId(roomId)
+    fun enterRoom(@PathVariable roomId: Long): List<SimpleUserResponseDto> {
+        return roomService.findUsersByRoomId(roomId).stream().map { it.toSimpleUserResponseDto() }.collect(toList())
     }
 
     @PostMapping("/{roomId}/users")

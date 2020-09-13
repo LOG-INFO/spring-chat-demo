@@ -4,6 +4,7 @@ import info.log.demo.common.ImageUploadUtil
 import info.log.demo.domain.room.entity.Room
 import info.log.demo.domain.user.dto.request.UpdateUserRequestDto
 import info.log.demo.domain.user.dto.response.SimpleUserResponseDto
+import lombok.EqualsAndHashCode
 import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -12,6 +13,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "users")
+@EqualsAndHashCode(exclude = ["rooms"])
 data class User(
         @Id
         val email: String,
@@ -23,7 +25,7 @@ data class User(
         val createdAt: LocalDateTime = LocalDateTime.now(),
         var updatedAt: LocalDateTime = LocalDateTime.now(),
         @ManyToMany(mappedBy = "users")
-        var rooms: MutableList<Room> = mutableListOf()) {
+        val rooms: MutableSet<Room> = mutableSetOf()) {
 
     fun update(updateUserRequestDto: UpdateUserRequestDto) {
         if (updateUserRequestDto.password != null) {

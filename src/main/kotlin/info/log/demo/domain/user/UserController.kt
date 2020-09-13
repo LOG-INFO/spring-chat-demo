@@ -1,12 +1,13 @@
 package info.log.demo.domain.user
 
-import info.log.demo.domain.room.entity.Room
+import info.log.demo.domain.room.dto.response.SimpleRoomResponseDto
 import info.log.demo.domain.user.dto.request.InsertUserRequestDto
 import info.log.demo.domain.user.dto.request.SearchUserDto
 import info.log.demo.domain.user.dto.request.UpdateUserRequestDto
 import info.log.demo.domain.user.entity.User
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.stream.Collectors.toList
 
 @RestController
 @RequestMapping("/users")
@@ -35,8 +36,8 @@ class UserController(val userService: UserService) {
     }
 
     @GetMapping("/me/rooms")
-    fun findAllMyRooms(@RequestParam email: String): List<Room> {
+    fun findAllMyRooms(@RequestParam email: String): List<SimpleRoomResponseDto> {
         val user = userService.findByEmail(email)
-        return user.rooms
+        return user.rooms.stream().map { it.toSimpleRoomResponseDto() }.collect(toList())
     }
 }
