@@ -14,9 +14,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "rooms")
 data class Room(
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        var roomId: Long? = null,
         var password: String?,
         @Enumerated(EnumType.STRING)
         var roomType: RoomType,
@@ -30,6 +27,9 @@ data class Room(
                 joinColumns = [JoinColumn(name = "room_id", referencedColumnName = "roomId")],
                 inverseJoinColumns = [JoinColumn(name = "email", referencedColumnName = "email")])
         val users: MutableSet<User> = mutableSetOf()) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val roomId: Long? = null
 
     fun changePassword(newPassword: String) {
         this.password = newPassword
