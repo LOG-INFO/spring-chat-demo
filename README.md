@@ -19,10 +19,10 @@
   - `docker run -p 3306:3306 --name=mysql -e MYSQL_ROOT_PASSWORD=test -d mysql/mysql-server:latest`
   - `apt-get install mysql-client`
   - `mysql -uroot -p`
-    - `CREATE USER 'userId'@'localhost' IDENTIFIED BY 'test';`
-    - `GRANT ALL PRIVILEGES ON *.* TO 'userId'@'localhost' WITH GRANT OPTION`;`
-    - `CREATE USER 'userId'@'%' IDENTIFIED BY 'password';`
-    - `GRANT ALL PRIVILEGES ON *.* TO 'userId'@'%' WITH GRANT OPTION;`
+    - `CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';`
+    - `GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION`;`
+    - `CREATE USER 'userId'@'%' IDENTIFIED BY 'test';`
+    - `GRANT ALL PRIVILEGES ON *.* TO 'test'@'%' WITH GRANT OPTION;`
     - `CREATE DATABASE test;`
   - MySQL Workbench로 접속
 4. Kafka 컨테이너 실행 및 접속
